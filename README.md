@@ -3,7 +3,7 @@ Reproductor de musica en java con nodos circulares e interfaz grafica con Jframe
 
 
 # Preview
-Preview de el programa.
+Preview del programa.
 
 ![image Preview](previewReproductor2.png)
 
