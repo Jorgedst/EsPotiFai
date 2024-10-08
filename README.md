@@ -5,7 +5,7 @@ Reproductor de musica en java con nodos circulares e interfaz grafica con Jframe
 # Preview
 Preview de el programa.
 
-![image Preview](previewReproductor.png)
+![image Preview](previewReproductor2.png)
 
 ## Agregar Canciones
 Para agregar nuevas canciones no hay una funcionalidad incorporada por el momento. Solo las canciones seleccionadas por el admin. jiji
