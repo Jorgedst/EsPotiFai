@@ -5,30 +5,55 @@
 package reproductormusica;
 
 import java.io.File;
-import javax.swing.JFrame;
+
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author PC
  */
 public class interfazReproductor extends javax.swing.JFrame {
-    /**
-     * Creates new form interfazReproductor
-     */
-    String rutaCancion1 = new File("").getAbsolutePath()+"\\src\\songs\\505ArticMonkeys.mp3";
-    String rutaPortadaCancion1 = new File("").getAbsolutePath()+"\\src\\images\\portada505.png";
-    Cancion cancion1 = new Cancion("505", "Artic Monkeys",rutaCancion1, rutaPortadaCancion1);
-    
+
+    //IMPORTAR CANCIONES
+    String rutaCancion1 = new File("").getAbsolutePath() + "\\src\\songs\\505ArticMonkeys.mp3";
+    String rutaPortadaCancion1 = new File("").getAbsolutePath() + "\\src\\images\\portada505.png";
+    Cancion cancion1 = new Cancion("505", "Arctic Monkeys", rutaCancion1, rutaPortadaCancion1);
+
+    String rutaCancion2 = new File("").getAbsolutePath() + "\\src\\songs\\WakeMeUpWhenSeptemberEnds_GreenDay.mp3";
+    String rutaPortadaCancion2 = new File("").getAbsolutePath() + "\\src\\images\\wakeMeUpWhenSeptemberEndsCover.png";
+    Cancion cancion2 = new Cancion("Wake Me Up When September Ends", "Green Day", rutaCancion2, rutaPortadaCancion2);
+
+    String rutaCancion3 = new File("").getAbsolutePath() + "\\src\\songs\\Apple_CharliXCX.mp3";
+    String rutaPortadaCancion3 = new File("").getAbsolutePath() + "\\src\\images\\AppleCover.png";
+    Cancion cancion3 = new Cancion("Apple", "Charli XCX", rutaCancion3, rutaPortadaCancion3);
+
+    //Importar icono de pausa y play
+    ImageIcon iconoPausa = new ImageIcon(new File("").getAbsolutePath() + "\\src\\images\\stopIcon.png");
+    ImageIcon iconoPlay = new ImageIcon(new File("").getAbsolutePath() + "\\src\\images\\playIcon.png");
+
+    //Objeto de ListaCircular
+    ListaCircular playList = new ListaCircular();
+
+    //Iterador Primer Click cancion
+    Boolean isPlaying = false;
+    Boolean firstClickSong = true;
+
     public interfazReproductor() {
         initComponents();
         setLocationRelativeTo(null);
-        cambiarCancionUI(cancion1);
+        reproductionButton.setIcon(iconoPlay);
+        //Agregar canciones a la playlist.
+        playList.agregar(cancion1);
+        playList.agregar(cancion2);
+        playList.agregar(cancion3);
+        cambiarCancionUI(playList.getActual().getCancion());
     }
-    
-    public void cambiarCancionUI(Cancion cancion){
+
+    public void cambiarCancionUI(Cancion cancion) {
         songTitle.setText(cancion.getTitulo());
         songAuthor.setText(cancion.getAutor());
         songIcon.setIcon(cancion.getImagenPortada());
+
     }
 
     /**
@@ -42,10 +67,11 @@ public class interfazReproductor extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         songPanel = new javax.swing.JPanel();
+        slider = new javax.swing.JSlider();
         songTitle = new javax.swing.JLabel();
         songAuthor = new javax.swing.JLabel();
         songIcon = new javax.swing.JLabel();
-        playButton = new javax.swing.JButton();
+        reproductionButton = new javax.swing.JButton();
         nextSongButton = new javax.swing.JButton();
         previousSongButton = new javax.swing.JButton();
         SongPanelBackgound = new javax.swing.JLabel();
@@ -66,32 +92,44 @@ public class interfazReproductor extends javax.swing.JFrame {
         songPanel.setBackground(new java.awt.Color(51, 51, 51));
         songPanel.setOpaque(false);
         songPanel.setLayout(null);
+        songPanel.add(slider);
+        slider.setBounds(160, 490, 340, 40);
 
         songTitle.setFont(new java.awt.Font("Cascadia Mono", 0, 18)); // NOI18N
         songTitle.setForeground(new java.awt.Color(204, 204, 204));
         songTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         songTitle.setText("tituloCancion");
         songPanel.add(songTitle);
-        songTitle.setBounds(80, 340, 480, 50);
+        songTitle.setBounds(80, 330, 480, 50);
 
         songAuthor.setFont(new java.awt.Font("Cascadia Mono", 0, 14)); // NOI18N
         songAuthor.setForeground(new java.awt.Color(153, 153, 153));
         songAuthor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         songAuthor.setText("Autor/ Autores");
         songPanel.add(songAuthor);
-        songAuthor.setBounds(80, 375, 480, 40);
+        songAuthor.setBounds(80, 365, 480, 40);
 
         songIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         songPanel.add(songIcon);
         songIcon.setBounds(145, 30, 340, 300);
 
-        playButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/playIcon.png"))); // NOI18N
-        playButton.setBorder(null);
-        playButton.setBorderPainted(false);
-        playButton.setContentAreaFilled(false);
-        playButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        songPanel.add(playButton);
-        playButton.setBounds(265, 420, 110, 110);
+        reproductionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/playIcon.png"))); // NOI18N
+        reproductionButton.setBorder(null);
+        reproductionButton.setBorderPainted(false);
+        reproductionButton.setContentAreaFilled(false);
+        reproductionButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        reproductionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reproductionButtonActionPerformed(evt);
+            }
+        });
+        reproductionButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                reproductionButtonKeyPressed(evt);
+            }
+        });
+        songPanel.add(reproductionButton);
+        reproductionButton.setBounds(292, 422, 60, 60);
 
         nextSongButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/siguienteIcon.png"))); // NOI18N
         nextSongButton.setBorder(null);
@@ -99,8 +137,14 @@ public class interfazReproductor extends javax.swing.JFrame {
         nextSongButton.setContentAreaFilled(false);
         nextSongButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         nextSongButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        nextSongButton.setRequestFocusEnabled(false);
+        nextSongButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextSongButtonActionPerformed(evt);
+            }
+        });
         songPanel.add(nextSongButton);
-        nextSongButton.setBounds(390, 440, 80, 70);
+        nextSongButton.setBounds(370, 430, 40, 40);
 
         previousSongButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/anteriorIcon.png"))); // NOI18N
         previousSongButton.setBorder(null);
@@ -108,14 +152,20 @@ public class interfazReproductor extends javax.swing.JFrame {
         previousSongButton.setContentAreaFilled(false);
         previousSongButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         previousSongButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        previousSongButton.setRequestFocusEnabled(false);
+        previousSongButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                previousSongButtonActionPerformed(evt);
+            }
+        });
         songPanel.add(previousSongButton);
-        previousSongButton.setBounds(170, 440, 80, 70);
+        previousSongButton.setBounds(230, 430, 40, 40);
 
         SongPanelBackgound.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         SongPanelBackgound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fondoReproductorMusicaBlurred.png"))); // NOI18N
         SongPanelBackgound.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
         songPanel.add(SongPanelBackgound);
-        SongPanelBackgound.setBounds(0, 0, 630, 580);
+        SongPanelBackgound.setBounds(0, 0, 630, 570);
 
         getContentPane().add(songPanel);
         songPanel.setBounds(230, 50, 630, 580);
@@ -126,6 +176,46 @@ public class interfazReproductor extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void reproductionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reproductionButtonActionPerformed
+        if (firstClickSong) {
+            playList.reproducir(playList.getActual().getCancion().getRutaCancion());
+            reproductionButton.setIcon(iconoPausa);
+            firstClickSong = false;
+            isPlaying = true;
+        } else {
+            if (isPlaying) {
+                playList.pausar();
+                isPlaying = false;
+                reproductionButton.setIcon(iconoPlay);
+            } else {
+                playList.reanudar(playList.getActual().getCancion().getRutaCancion());
+                reproductionButton.setIcon(iconoPausa);
+                isPlaying = true;
+            }
+        }
+
+    }//GEN-LAST:event_reproductionButtonActionPerformed
+
+    private void nextSongButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextSongButtonActionPerformed
+        firstClickSong = true;
+        playList.cerrarCancion(playList.getActual().getCancion().getRutaCancion());
+        playList.avanzar();
+        cambiarCancionUI(playList.getActual().getCancion());
+        reproductionButton.setIcon(iconoPlay);
+    }//GEN-LAST:event_nextSongButtonActionPerformed
+
+    private void previousSongButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousSongButtonActionPerformed
+        firstClickSong = true;
+        playList.cerrarCancion(playList.getActual().getCancion().getRutaCancion());
+        playList.retroceder();
+        cambiarCancionUI(playList.getActual().getCancion());
+        reproductionButton.setIcon(iconoPlay);
+    }//GEN-LAST:event_previousSongButtonActionPerformed
+
+    private void reproductionButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_reproductionButtonKeyPressed
+        
+    }//GEN-LAST:event_reproductionButtonKeyPressed
 
     /**
      * @param args the command line arguments
@@ -167,8 +257,9 @@ public class interfazReproductor extends javax.swing.JFrame {
     private javax.swing.JLabel background;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton nextSongButton;
-    private javax.swing.JButton playButton;
     private javax.swing.JButton previousSongButton;
+    private javax.swing.JButton reproductionButton;
+    private javax.swing.JSlider slider;
     private javax.swing.JLabel songAuthor;
     private javax.swing.JLabel songIcon;
     private javax.swing.JPanel songPanel;

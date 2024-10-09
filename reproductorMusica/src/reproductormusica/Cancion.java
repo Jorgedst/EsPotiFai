@@ -4,6 +4,7 @@
  */
 package reproductormusica;
 
+import java.awt.Image;
 import javax.swing.ImageIcon;
 
 /**
@@ -11,10 +12,13 @@ import javax.swing.ImageIcon;
  * @author PC
  */
 public class Cancion {
+
     private String titulo;
     private String autor;
     private String rutaCancion;
     private String rutaImagenPortada;
+
+    
 
     public Cancion(String titulo, String autor, String rutaCancion, String rutaImagenPortada) {
         this.titulo = titulo;
@@ -49,12 +53,16 @@ public class Cancion {
 
     public ImageIcon getImagenPortada() {
         ImageIcon iconoCancion = new ImageIcon(rutaImagenPortada);
-        return iconoCancion;
+        Image imagenOriginal = iconoCancion.getImage();
+        Image imagenResize = imagenOriginal.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
+        ImageIcon iconoResize = new ImageIcon(imagenResize);
+        return iconoResize;
     }
 
     public void setRutaImagenPortada(String rutaImagenPortada) {
         this.rutaImagenPortada = rutaImagenPortada;
     }
+
     
-    
+
 }
