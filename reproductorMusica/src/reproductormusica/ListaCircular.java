@@ -23,7 +23,7 @@ public class ListaCircular {
     private Thread thread;
     private int totalBytes;
     private int bytesReproducidos;
-    
+
     public ListaCircular() {
         PTR = null;
         FINAL = null;
@@ -36,10 +36,14 @@ public class ListaCircular {
             PTR = nodo;
             FINAL = nodo;
             actual = nodo;
+            PTR.setSiguiente(FINAL);
+            FINAL.setAnterior(PTR);
         } else {
             FINAL.setSiguiente(nodo);
             nodo.setAnterior(FINAL);
             FINAL = nodo;
+            FINAL.setSiguiente(PTR);
+            PTR.setAnterior(FINAL);
         }
     }
 
@@ -48,12 +52,8 @@ public class ListaCircular {
             System.out.println("La lista de reproduccion esta vacía.");
             return;
         }
-        if (actual.getSiguiente() == null) {
-            actual = PTR;
-        } else {
-            actual = actual.getSiguiente();
-        }
-        System.out.println("Cancion Actual:" + actual.getCancion().getTitulo());
+        actual = actual.getSiguiente(); // Avanza en la lista circular
+        System.out.println("Cancion Actual: " + actual.getCancion().getTitulo());
     }
 
     public void retroceder() {
@@ -61,13 +61,26 @@ public class ListaCircular {
             System.out.println("La lista de reproduccion esta vacía.");
             return;
         }
-        
-        if (actual.getAnterior() == null) {
-            actual = FINAL;
-        } else {
-            actual = actual.getAnterior();
+        actual = actual.getAnterior(); 
+        System.out.println("Cancion Actual: " + actual.getCancion().getTitulo());
+    }
+
+    public NodoCancion buscarCancion(String tituloCancion) {
+        NodoCancion cancion = PTR;
+        if (cancion == null) {
+            return null; 
         }
-        System.out.println("Cancion Actual:" + actual.getCancion().getTitulo());
+        do {
+            System.out.println("Buscando: " + cancion.getCancion().getTitulo());
+            if (cancion.getCancion().getTitulo().equalsIgnoreCase(tituloCancion)) {
+                setActual(cancion);
+                System.out.println("CANCION ENCONTRADA");
+                return cancion;
+            }
+            cancion = cancion.getSiguiente();
+        } while (cancion != PTR); // Se detiene cuando vuelve al inicio de la lista
+
+        return null;
     }
 
     public void reproducir(String rutaCancion) {

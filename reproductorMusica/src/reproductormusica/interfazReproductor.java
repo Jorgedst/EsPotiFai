@@ -4,8 +4,7 @@
  */
 package reproductormusica;
 
-import java.awt.HeadlessException;
-import java.awt.List;
+import java.awt.Color;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -24,10 +23,10 @@ public class interfazReproductor extends javax.swing.JFrame {
         {"Apple", "Charli XCX", "songs\\Apple_CharliXCX.mp3", "images\\AppleCover.png"},
         {"Niégame Tres Veces", "Silvestre Dangond", "songs\\NiegameTresVeces_SilvestreDangond.mp3", "images\\niegameTresVecesCover.jpeg"},
         {"Boulevard Of Broken Dreams", "Green Day", "songs\\BoulevardOfBrokenDreams_GreenDay.mp3", "images\\BoulevardOfBrokenDreamsCover.jpg"},
-        {"Nobody", "Mitski", "songs\\nobody_Mitski.mp3", "images\\nobodyCover.jpeg"}
+        {"Nobody", "Mitski", "songs\\nobody_Mitski.mp3", "images\\nobodyCover.jpeg"},
+        {"Feather", "Sabrina Carpenter", "songs\\Feather_SabrinaCarpenter.mp3", "images\\FeatherCover.jpeg"},
+        {"Otonoke", "Creepy Nuts", "songs\\Otonoke_CreepyNuts.mp3", "images\\OtonokeCover.jpeg"}
     };
-
-    ArrayList<Cancion> canciones = new ArrayList<>();
 
     //Importar icono de pausa y play
     ImageIcon iconoPausa = new ImageIcon(new File("").getAbsolutePath() + "\\src\\images\\stopIcon.png");
@@ -76,7 +75,16 @@ public class interfazReproductor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        dialogo = new javax.swing.JDialog();
+        panelDialogo = new javax.swing.JPanel();
+        txtCancionBuscada = new javax.swing.JLabel();
+        TextoAdvertencia = new javax.swing.JLabel();
+        TextoAdvertencia2 = new javax.swing.JLabel();
+        SongPanelBackgound1 = new javax.swing.JLabel();
+        espotifai = new javax.swing.JLabel();
+        searchPanel = new javax.swing.JPanel();
+        btnBuscar = new javax.swing.JButton();
+        txtSearch = new javax.swing.JTextField();
         songPanel = new javax.swing.JPanel();
         songTitle = new javax.swing.JLabel();
         songAuthor = new javax.swing.JLabel();
@@ -88,6 +96,43 @@ public class interfazReproductor extends javax.swing.JFrame {
         SongPanelBackgound = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
+        dialogo.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        dialogo.setBackground(new java.awt.Color(153, 0, 51));
+        dialogo.setPreferredSize(new java.awt.Dimension(600, 300));
+        dialogo.setResizable(false);
+        dialogo.setSize(new java.awt.Dimension(600, 300));
+        dialogo.getContentPane().setLayout(null);
+
+        panelDialogo.setLayout(null);
+
+        txtCancionBuscada.setFont(new java.awt.Font("Cascadia Mono", 0, 22)); // NOI18N
+        txtCancionBuscada.setForeground(new java.awt.Color(204, 204, 204));
+        txtCancionBuscada.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        panelDialogo.add(txtCancionBuscada);
+        txtCancionBuscada.setBounds(160, 130, 280, 40);
+
+        TextoAdvertencia.setFont(new java.awt.Font("Cascadia Mono", 1, 22)); // NOI18N
+        TextoAdvertencia.setForeground(new java.awt.Color(255, 255, 255));
+        TextoAdvertencia.setText("No se han encontrado resultados para:");
+        panelDialogo.add(TextoAdvertencia);
+        TextoAdvertencia.setBounds(50, 70, 510, 50);
+
+        TextoAdvertencia2.setBackground(new java.awt.Color(51, 51, 51));
+        TextoAdvertencia2.setFont(new java.awt.Font("Cascadia Mono", 0, 16)); // NOI18N
+        TextoAdvertencia2.setForeground(new java.awt.Color(204, 204, 204));
+        TextoAdvertencia2.setText("Asegurate de escribir bien el nombre de la cancion.");
+        panelDialogo.add(TextoAdvertencia2);
+        TextoAdvertencia2.setBounds(70, 180, 460, 50);
+
+        SongPanelBackgound1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        SongPanelBackgound1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fondoReproductorMusicaBlurred.png"))); // NOI18N
+        SongPanelBackgound1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        panelDialogo.add(SongPanelBackgound1);
+        SongPanelBackgound1.setBounds(0, 0, 600, 300);
+
+        dialogo.getContentPane().add(panelDialogo);
+        panelDialogo.setBounds(0, 0, 600, 300);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("EsPotiFai");
         setPreferredSize(new java.awt.Dimension(1080, 720));
@@ -95,11 +140,60 @@ public class interfazReproductor extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1080, 720));
         getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Cascadia Mono", 0, 11)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("© 2024 EsPotiFai By Jorge.");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 660, 300, 14);
+        espotifai.setFont(new java.awt.Font("Cascadia Mono", 0, 11)); // NOI18N
+        espotifai.setForeground(new java.awt.Color(255, 255, 255));
+        espotifai.setText("© 2024 EsPotiFai By Jorge.");
+        getContentPane().add(espotifai);
+        espotifai.setBounds(10, 660, 300, 14);
+
+        searchPanel.setBackground(new java.awt.Color(51, 51, 51));
+        searchPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 40, true));
+        searchPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        searchPanel.setOpaque(false);
+        searchPanel.setLayout(null);
+
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscarIcon.png"))); // NOI18N
+        btnBuscar.setBorder(null);
+        btnBuscar.setBorderPainted(false);
+        btnBuscar.setContentAreaFilled(false);
+        btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+        searchPanel.add(btnBuscar);
+        btnBuscar.setBounds(5, 2, 40, 30);
+
+        txtSearch.setBackground(new java.awt.Color(51, 51, 51));
+        txtSearch.setFont(new java.awt.Font("Cascadia Mono", 0, 14)); // NOI18N
+        txtSearch.setForeground(new java.awt.Color(102, 102, 102));
+        txtSearch.setText("¿Que quieres escuchar hoy?");
+        txtSearch.setBorder(null);
+        txtSearch.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtSearch.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtSearchFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtSearchFocusLost(evt);
+            }
+        });
+        txtSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtSearchMouseExited(evt);
+            }
+        });
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSearchKeyPressed(evt);
+            }
+        });
+        searchPanel.add(txtSearch);
+        txtSearch.setBounds(45, 0, 230, 35);
+
+        getContentPane().add(searchPanel);
+        searchPanel.setBounds(410, 40, 280, 35);
 
         songPanel.setBackground(new java.awt.Color(51, 51, 51));
         songPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 40, true));
@@ -185,7 +279,7 @@ public class interfazReproductor extends javax.swing.JFrame {
         SongPanelBackgound.setBounds(0, 0, 630, 540);
 
         getContentPane().add(songPanel);
-        songPanel.setBounds(230, 50, 630, 540);
+        songPanel.setBounds(230, 90, 630, 540);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fondoReproductorMusica.jpg"))); // NOI18N
         getContentPane().add(background);
@@ -220,6 +314,7 @@ public class interfazReproductor extends javax.swing.JFrame {
         playList.avanzar();
         cambiarCancionUI(playList.getActual().getCancion());
         reproductionButton.setIcon(iconoPlay);
+        reproductionButton.doClick();
     }//GEN-LAST:event_nextSongButtonActionPerformed
 
     private void previousSongButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousSongButtonActionPerformed
@@ -228,11 +323,50 @@ public class interfazReproductor extends javax.swing.JFrame {
         playList.retroceder();
         cambiarCancionUI(playList.getActual().getCancion());
         reproductionButton.setIcon(iconoPlay);
+        reproductionButton.doClick();
     }//GEN-LAST:event_previousSongButtonActionPerformed
 
     private void reproductionButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_reproductionButtonKeyPressed
 
     }//GEN-LAST:event_reproductionButtonKeyPressed
+
+    private void txtSearchFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSearchFocusGained
+        txtSearch.setText("");
+        txtSearch.setForeground(new Color(204, 204, 204));
+    }//GEN-LAST:event_txtSearchFocusGained
+
+    private void txtSearchFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSearchFocusLost
+        txtSearch.setText("¿Que quieres escuchar hoy?");
+        txtSearch.setForeground(new Color(102, 102, 102));
+    }//GEN-LAST:event_txtSearchFocusLost
+
+    private void txtSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            btnBuscar.doClick();
+        }
+    }//GEN-LAST:event_txtSearchKeyPressed
+
+    private void txtSearchMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSearchMouseExited
+        reproductionButton.requestFocus();
+    }//GEN-LAST:event_txtSearchMouseExited
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        firstClickSong = true;
+        isPlaying = false;
+        playList.cerrarCancion(playList.getActual().getCancion().getRutaCancion());
+        String cancionBuscada = txtSearch.getText();
+        NodoCancion nodoCancionSearch = playList.buscarCancion(cancionBuscada);
+        if (nodoCancionSearch != null) {
+            reproductionButton.doClick();
+            Cancion cancionEncontrada = nodoCancionSearch.getCancion();
+            playList.setActual(nodoCancionSearch);
+            cambiarCancionUI(cancionEncontrada);
+        } else {
+            txtCancionBuscada.setText(cancionBuscada);
+            dialogo.setLocationRelativeTo(null);
+            dialogo.setVisible(true);
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -271,15 +405,24 @@ public class interfazReproductor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel SongPanelBackgound;
+    private javax.swing.JLabel SongPanelBackgound1;
+    private javax.swing.JLabel TextoAdvertencia;
+    private javax.swing.JLabel TextoAdvertencia2;
     private javax.swing.JLabel background;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JDialog dialogo;
+    private javax.swing.JLabel espotifai;
     private javax.swing.JPanel iconSongPanel;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton nextSongButton;
+    private javax.swing.JPanel panelDialogo;
     private javax.swing.JButton previousSongButton;
     private javax.swing.JButton reproductionButton;
+    private javax.swing.JPanel searchPanel;
     private javax.swing.JLabel songAuthor;
     private javax.swing.JLabel songIcon;
     private javax.swing.JPanel songPanel;
     private javax.swing.JLabel songTitle;
+    private javax.swing.JLabel txtCancionBuscada;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }
