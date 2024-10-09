@@ -122,7 +122,9 @@ public class ListaCircular {
     }
 
     public void cerrarCancion(String rutaCancion) {
-        reproductor.close();// Detener la reproducción
+        if (reproductor != null){
+            reproductor.close();// Detener la reproducción
+        }
     }
 
     public NodoCancion getPTR() {

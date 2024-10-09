@@ -134,7 +134,7 @@ public class interfazReproductor extends javax.swing.JFrame {
         panelDialogo.setBounds(0, 0, 600, 300);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("EsPotiFai");
+        setTitle("MusiKPlayer");
         setPreferredSize(new java.awt.Dimension(1080, 720));
         setResizable(false);
         setSize(new java.awt.Dimension(1080, 720));
@@ -142,7 +142,7 @@ public class interfazReproductor extends javax.swing.JFrame {
 
         espotifai.setFont(new java.awt.Font("Cascadia Mono", 0, 11)); // NOI18N
         espotifai.setForeground(new java.awt.Color(255, 255, 255));
-        espotifai.setText("© 2024 EsPotiFai By Jorge.");
+        espotifai.setText("© 2024 MusiKPlayer By Jorge.");
         getContentPane().add(espotifai);
         espotifai.setBounds(10, 660, 300, 14);
 
@@ -153,7 +153,7 @@ public class interfazReproductor extends javax.swing.JFrame {
         searchPanel.setLayout(null);
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscarIcon.png"))); // NOI18N
-        btnBuscar.setBorder(null);
+        btnBuscar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnBuscar.setBorderPainted(false);
         btnBuscar.setContentAreaFilled(false);
         btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -351,12 +351,13 @@ public class interfazReproductor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSearchMouseExited
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        firstClickSong = true;
-        isPlaying = false;
-        playList.cerrarCancion(playList.getActual().getCancion().getRutaCancion());
+
         String cancionBuscada = txtSearch.getText();
         NodoCancion nodoCancionSearch = playList.buscarCancion(cancionBuscada);
         if (nodoCancionSearch != null) {
+            firstClickSong = true;
+            isPlaying = false;
+            playList.cerrarCancion(playList.getActual().getCancion().getRutaCancion());
             reproductionButton.doClick();
             Cancion cancionEncontrada = nodoCancionSearch.getCancion();
             playList.setActual(nodoCancionSearch);
