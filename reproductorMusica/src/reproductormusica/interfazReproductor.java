@@ -44,6 +44,8 @@ public class interfazReproductor extends javax.swing.JFrame {
     public interfazReproductor() {
         initComponents();
         setLocationRelativeTo(null);
+        ImageIcon icono = new ImageIcon(getClass().getResource("/images/espotifai.png"));
+        setIconImage(icono.getImage());
         reproductionButton.setIcon(iconoPlay);
         reproductionButton.requestFocusInWindow();
         //Agregar canciones a la playlist.
@@ -88,7 +90,7 @@ public class interfazReproductor extends javax.swing.JFrame {
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("ShittyFy");
+        setTitle("EsPotiFai");
         setPreferredSize(new java.awt.Dimension(1080, 720));
         setResizable(false);
         setSize(new java.awt.Dimension(1080, 720));
