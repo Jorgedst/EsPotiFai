@@ -21,11 +21,10 @@ public class ListaCircular {
     private AdvancedPlayer reproductor;
     private FileInputStream fileInputStream;
     private Thread thread;
-    private int totalBytes;    // Total de bytes del archivo MP3
-    private int bytesReproducidos;  // Bytes reproducidos hasta ahora (para pausar)
-
+    private int totalBytes;
+    private int bytesReproducidos;
+    
     public ListaCircular() {
-
         PTR = null;
         FINAL = null;
         actual = null;
