@@ -24,7 +24,6 @@ public class interfazReproductor extends javax.swing.JFrame {
         {"Apple", "Charli XCX", "songs\\Apple_CharliXCX.mp3", "images\\AppleCover.png"},
         {"Niégame Tres Veces", "Silvestre Dangond", "songs\\NiegameTresVeces_SilvestreDangond.mp3", "images\\niegameTresVecesCover.jpeg"},
         {"Boulevard Of Broken Dreams", "Green Day", "songs\\BoulevardOfBrokenDreams_GreenDay.mp3", "images\\BoulevardOfBrokenDreamsCover.jpg"},
-        {"La Última", "Quevedo", "songs\\laUltima_Quevedo.mp3", "images\\quevedoCover.png"},
         {"Nobody", "Mitski", "songs\\nobody_Mitski.mp3", "images\\nobodyCover.jpeg"}
     };
 
