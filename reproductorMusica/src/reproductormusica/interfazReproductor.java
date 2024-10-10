@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+
 /**
  *
  * @author PC
@@ -22,10 +23,10 @@ public class interfazReproductor extends javax.swing.JFrame {
         {"Wake Me Up When September Ends", "Green Day", "songs\\WakeMeUpWhenSeptemberEnds_GreenDay.mp3", "images\\wakeMeUpWhenSeptemberEndsCover.png"},
         {"Apple", "Charli XCX", "songs\\Apple_CharliXCX.mp3", "images\\AppleCover.png"},
         {"Niégame Tres Veces", "Silvestre Dangond", "songs\\NiegameTresVeces_SilvestreDangond.mp3", "images\\niegameTresVecesCover.jpeg"},
-        {"Boulevard Of Broken Dreams", "Green Day", "songs\\BoulevardOfBrokenDreams_GreenDay.mp3", "images\\BoulevardOfBrokenDreamsCover.jpg"},
         {"Nobody", "Mitski", "songs\\nobody_Mitski.mp3", "images\\nobodyCover.jpeg"},
         {"Feather", "Sabrina Carpenter", "songs\\Feather_SabrinaCarpenter.mp3", "images\\FeatherCover.jpeg"},
-        {"Otonoke", "Creepy Nuts", "songs\\Otonoke_CreepyNuts.mp3", "images\\OtonokeCover.jpeg"}
+        {"Otonoke", "Creepy Nuts", "songs\\Otonoke_CreepyNuts.mp3", "images\\OtonokeCover.jpeg"},
+        {"El Ritmo Que Nos Une", "Ryan Castro", "songs\\ElRitmoQueNosUne_RyanCastro.mp3", "images\\elRitmoquenosuneCover.jpeg"}
     };
 
     //Importar icono de pausa y play
@@ -63,7 +64,6 @@ public class interfazReproductor extends javax.swing.JFrame {
         songTitle.setText(cancion.getTitulo());
         songAuthor.setText(cancion.getAutor());
         songIcon.setIcon(cancion.getImagenPortada());
-
     }
 
     /**
@@ -98,7 +98,6 @@ public class interfazReproductor extends javax.swing.JFrame {
 
         dialogo.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         dialogo.setBackground(new java.awt.Color(153, 0, 51));
-        dialogo.setPreferredSize(new java.awt.Dimension(600, 300));
         dialogo.setResizable(false);
         dialogo.setSize(new java.awt.Dimension(600, 300));
         dialogo.getContentPane().setLayout(null);
